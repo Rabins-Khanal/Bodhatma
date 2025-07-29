@@ -23,6 +23,11 @@ import Signup from "./shop/auth/Signup";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Scriptures from "./shop/scriptures/scriptures";
 import Accessories from "./shop/product/product";
+import PaymentSuccess from "../components/shop/payment/PaymentSuccess";
+import PaymentFailure from "../components/shop/payment/PaymentFailure";
+import EsewaPayment from "../components/shop/payment/EsewaPayment";
+
+
 
 const Routes = (props) => {
   return (
@@ -39,6 +44,9 @@ const Routes = (props) => {
         <Route exact path="/scriptures" component={Scriptures} />
         <Route exact path="/accessories" component={Accessories} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/payment/success" component={PaymentSuccess} />
+        <Route exact path="/payment/failure" component={PaymentFailure} />
+        <Route exact path="/esewa" component={EsewaPayment} />
 
         
         <Route

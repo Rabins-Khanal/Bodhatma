@@ -8,6 +8,9 @@ const cors = require("cors");
 const fs = require("fs");
 const https = require("https");
 const path = require("path");
+const esewaRouter = require("./routes/esewa");
+
+
 
 // Import Router
 const authRouter = require("./routes/auth");
@@ -56,7 +59,7 @@ app.use("/api", brainTreeRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/customize", customizeRouter);
 app.use("/api/notice", noticeRoutes);
-
+app.use("/api/payment/esewa", esewaRouter);
 
 const sslOptions = {
   key: fs.readFileSync(path.join(__dirname, "sslcert", "server.key")),
