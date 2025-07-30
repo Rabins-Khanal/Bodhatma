@@ -7,67 +7,105 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const fs = require("fs");
 const https = require("https");
+const http = require("http");
 const path = require("path");
-const esewaRouter = require("./routes/esewa");
+const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
+const csurf = require("csurf");
 
-
-
-// Import Router
+// Routers
 const authRouter = require("./routes/auth");
 const categoryRouter = require("./routes/categories");
 const noticeRoutes = require("./routes/notices");
 const productRouter = require("./routes/products");
-const brainTreeRouter = require("./routes/braintree");
+const khaltiRouter = require("./routes/khalti");
 const orderRouter = require("./routes/orders");
 const usersRouter = require("./routes/users");
 const customizeRouter = require("./routes/customize");
-// Import Auth middleware for check user login or not~
 const { loginCheck } = require("./middleware/auth");
 const CreateAllFolder = require("./config/uploadFolderCreateScript");
+const { cleanExpiredOTPs } = require("./config/utils");
 
-/* Create All Uploads Folder if not exists | For Uploading Images */
+/* Create Upload Folders */
 CreateAllFolder();
 
-// Database Connection
+// MongoDB Connection
 mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
   })
   .then(() =>
-    console.log(
-      "==============Mongodb Database Connected Successfully=============="
-    )
+    console.log("==============MongoDB Connected Successfully==============")
   )
-  .catch((err) => console.log("Database Not Connected !!!"));
+  .catch((err) => console.log("❌ Database Not Connected:", err));
 
 // Middleware
 app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(cors());
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static("public"));
+
+app.use(helmet()); // Security headers
+app.use(xss()); // Prevent XSS
+app.use(mongoSanitize()); // Prevent NoSQL injection
+
+// Enable CORS with credentials
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
+// CSRF Protection Middleware 
+const csrfProtection = csurf({
+  cookie: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  },
+});
+app.use(csrfProtection);
+
+// Route to get CSRF token 
+app.get("/api/csrf-token", (req, res) => {
+  res.json({ csrfToken: req.csrfToken() });
+});
 
 // Routes
 app.use("/api", authRouter);
 app.use("/api/user", usersRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/product", productRouter);
-app.use("/api", brainTreeRouter);
+app.use("/api/khalti", khaltiRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/customize", customizeRouter);
 app.use("/api/notice", noticeRoutes);
-app.use("/api/payment/esewa", esewaRouter);
 
-const sslOptions = {
-  key: fs.readFileSync(path.join(__dirname, "sslcert", "server.key")),
-  cert: fs.readFileSync(path.join(__dirname, "sslcert", "server.cert")),
-};
+// Clean expired OTPs every hour
+setInterval(cleanExpiredOTPs, 60 * 60 * 1000);
 
+// Server Init
 const PORT = process.env.PORT || 8000;
 
-https.createServer(sslOptions, app).listen(PORT, () => {
-  console.log(`✅ HTTPS Server is running at https://localhost:${PORT}`);
-});
+const useHTTPS =
+  process.env.NODE_ENV === "production" &&
+  fs.existsSync(path.join(__dirname, "sslcert", "server.key"));
+
+if (useHTTPS) {
+  const sslOptions = {
+    key: fs.readFileSync(path.join(__dirname, "sslcert", "server.key")),
+    cert: fs.readFileSync(path.join(__dirname, "sslcert", "server.cert")),
+  };
+
+  https.createServer(sslOptions, app).listen(PORT, () => {
+    console.log(`✅ HTTPS Server running at https://localhost:${PORT}`);
+  });
+} else {
+  http.createServer(app).listen(PORT, () => {
+    console.log(`✅ HTTP Server running at http://localhost:${PORT}`);
+  });
+}
