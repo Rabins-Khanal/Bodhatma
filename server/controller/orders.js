@@ -37,12 +37,22 @@ class Order {
   }
 
   async postCreateOrder(req, res) {
-    let { allProduct, user, amount, address, phone } = req.body;
+    let { 
+      allProduct, 
+      user, 
+      amount, 
+      address, 
+      phone, 
+      paymentMethod = 'cod',
+      paymentStatus = 'pending',
+      transactionId,
+      khaltiData 
+    } = req.body;
+    
     if (
       !allProduct ||
       !user ||
       !amount ||
-      // !transactionId ||
       !address ||
       !phone
     ) {
@@ -53,13 +63,20 @@ class Order {
           allProduct,
           user,
           amount,
-          // transactionId,
           address,
           phone,
+          paymentMethod,
+          paymentStatus,
+          transactionId,
+          khaltiData,
         });
         let save = await newOrder.save();
         if (save) {
-          return res.json({ success: "Order created successfully" });
+          return res.json({ 
+            success: true,
+            message: "Order created successfully",
+            order: save
+          });
         }
       } catch (err) {
         return res.json({ error: err });

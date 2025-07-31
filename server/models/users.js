@@ -42,6 +42,27 @@ const userSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    // 2FA fields
+    two_factor_enabled: {
+      type: Boolean,
+      default: true, // Changed from false to true
+    },
+    otp_secret: {
+      type: String,
+      default: null,
+    },
+    otp_expires_at: {
+      type: Date,
+      default: null,
+    },
+    otp_attempts: {
+      type: Number,
+      default: 0,
+    },
+    otp_locked_until: {
+      type: Date,
+      default: null,
+    },
   },
   { timestamps: true }
 );

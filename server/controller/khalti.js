@@ -28,7 +28,6 @@ class KhaltiController {
         product_name 
       } = req.body;
 
-      // Verify webhook signature (implement according to Khalti docs)
       const signature = req.headers['khalti-signature'];
       const webhookSecret = process.env.KHALTI_WEBHOOK_SECRET;
       
@@ -40,12 +39,10 @@ class KhaltiController {
       }
 
       if (type === 'CONFIRMATION') {
-        // Find order by transaction ID (idx)
         const order = await orderModel.findOne({ transactionId: idx });
         
         if (order) {
-          // Verify amount matches
-          if (order.amount * 100 !== amount) { // Khalti amount is in paisa
+          if (order.amount * 100 !== amount) { 
             return res.status(400).json({ 
               success: false, 
               message: 'Amount mismatch' 

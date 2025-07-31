@@ -18,10 +18,6 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    // transactionId: {
-    //   type: String,
-    //   required: true,
-    // },
     address: {
       type: String,
       required: true,
@@ -29,6 +25,26 @@ const orderSchema = new mongoose.Schema(
     phone: {
       type: Number,
       required: true,
+    },
+    paymentMethod: {
+      type: String,
+      enum: ['cod', 'khalti'],
+      required: true,
+      default: 'cod'
+    },
+    paymentStatus: {
+      type: String,
+      enum: ['pending', 'completed', 'failed'],
+      required: true,
+      default: 'pending'
+    },
+    transactionId: {
+      type: String,
+      // For Khalti payments, this will store the Khalti transaction ID
+    },
+    khaltiData: {
+      type: Object,
+      // Store complete Khalti payment response data
     },
     status: {
       type: String,
