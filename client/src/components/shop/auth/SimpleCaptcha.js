@@ -117,7 +117,7 @@ const SimpleCaptcha = ({ onCaptchaVerified, onCaptchaChange }) => {
           {!isCorrect && (
             <button
               onClick={handleAnswerSubmit}
-              className="px-3 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm font-medium"
+              className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm font-medium"
             >
               Verify
             </button>

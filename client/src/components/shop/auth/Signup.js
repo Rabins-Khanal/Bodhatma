@@ -119,29 +119,18 @@ const Signup = (props) => {
     <Fragment>
       <Navbar />
 
-      <div className="flex justify-center mt-20">
-        <img
-          src={`${process.env.PUBLIC_URL}/prayer.png`}
-          alt="Prayer Flags"
-          style={{
-            width: "82%",
-            height: "auto",
-            objectFit: "cover",
-          }}
-        />
-      </div>
 
       <div
         className="flex justify-center items-start gap-12 mt-8 px-2"
-        style={{ marginTop: "40px", marginBottom: "100px" }}
+        style={{ marginTop: "130px", marginBottom: "50px" }}
       >
         <div>
           <img
-            src={`${process.env.PUBLIC_URL}/buddhag.png`}
-            alt="Buddha"
+            src={`${process.env.PUBLIC_URL}/gg.png`}
+            alt="cloth"
             style={{
               width: "650px",
-              height: "450px",
+              height: "600px",
               borderRadius: "6px",
               boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
             }}
@@ -248,8 +237,8 @@ const Signup = (props) => {
 
             <button
               type="submit"
-              style={{ background: "#FA8256", fontWeight: 500, fontSize: 17 }}
-              className={`w-full rounded py-2 text-black mt-3 transition ${
+              style={{ background: "#2563EB", fontWeight: 500, fontSize: 17 }}
+              className={`w-full rounded py-2 text-white mt-3 transition ${
                 captchaVerified ? "hover:opacity-90" : "opacity-50 cursor-not-allowed"
               }`}
               disabled={data.loading || !captchaVerified}

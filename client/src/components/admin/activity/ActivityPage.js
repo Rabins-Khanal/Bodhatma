@@ -4,40 +4,20 @@ import AdminNavber from "../partials/AdminNavber"; // adjust the path if needed
 const ActivityPage = () => {
   const [activityData, setActivityData] = useState([
      {
-      user: "Acac",
-      email: "rabinskhanal65@gmail.com",
-      twoFactor: "No",
-      action: "Password Changed",
-      date: "31/07/2025 12:15:30",
-    },
-    {
-      user: "Acac",
-      email: "rabinskhanal65@gmail.com",
-      twoFactor: "No",
+      user: "Rabins",
+      email: "sjlkhanal@gmail.com",
+      twoFactor: "Yes",
       action: "Logged in",
-      date: "31/07/2025 08:09:17",
+      date: "02/08/2025 10:15:30",
     },
     {
-      user: "RK",
+      user: "Rabins",
       email: "rabinskhanal47@gmail.com",
       twoFactor: "Yes",
-      action: "2FA login successful",
-      date: "30/07/2025 11:53:54",
+      action: "Logged out",
+      date: "02/08/2025 :09:17",
     },
-    {
-      user: "RK",
-      email: "rabinskhanal47@gmail.com",
-      twoFactor: "Yes",
-      action: "Entered OTP",
-      date: "30/07/2025 11:53:50",
-    },
-    {
-      user: "RK",
-      email: "rabinskhanal47@gmail.com",
-      twoFactor: "Yes",
-      action: "Enabled 2FA",
-      date: "30/07/2025 11:50:12",
-    },
+ 
     {
       user: "Rabins Khanal",
       email: "sjlkhanal@gmail.com",
@@ -47,30 +27,23 @@ const ActivityPage = () => {
     },
     {
       user: "Rabins Khanal",
-      email: "sjlkhanal@gmail.com",
+      email: "rabinskhanal47@gmail.com",
       twoFactor: "Yes",
       action: "Profile Edited",
       date: "29/07/2025 14:28:17",
-    },
-    {
-      user: "Rabins Khanal",
-      email: "sjlkhanal@gmail.com",
-      twoFactor: "Yes",
-      action: "2FA login successful",
-      date: "29/07/2025 14:26:33",
     },
      {
       user: "Rabins Khanal",
       email: "sjlkhanal@gmail.com",
       twoFactor: "Yes",
-      action: "Entered OTP",
+      action: "Logged in",
       date: "29/07/2025 14:26:30",
     },
     {
       user: "Rabins Khanal",
       email: "sjlkhanal@gmail.com",
       twoFactor: "Yes",
-      action: "Enabled 2FA",
+      action: "Logged out",
       date: "29/07/2025 14:25:40",
     },
   ]);

@@ -171,14 +171,14 @@ const ProductDetailsSection = (props) => {
                   layoutData.inCart && layoutData.inCart.includes(sProduct._id) ? (
                     <button
                       disabled
-                      className="w-full py-2 bg-orange-600 text-white text-sm font-semibold opacity-70 cursor-not-allowed rounded-md"
+                      className="w-full py-2 bg-blue-600 text-white text-sm font-semibold opacity-70 cursor-not-allowed rounded-md"
                     >
                       In Cart
                     </button>
                   ) : (
                     <button
                       onClick={() => addToCart(sProduct._id, quantitiy, sProduct.pPrice, layoutDispatch, setQuantitiy, setAlertq, fetchData, totalCost)}
-                      className="w-full py-2 bg-orange-600 text-white text-sm font-semibold rounded-md hover:bg-orange-700 transition"
+                      className="w-full py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition"
                     >
                       Add to Cart
                     </button>

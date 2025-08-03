@@ -34,17 +34,17 @@ const ImageCarousel = () => {
     ],
   };
 
-  const images = ["/carousel1.png", "/carousel2.png", "/carousel1.png"];
+  const images = ["/carousel3.png", "/carousel.png", "/carousel3.png"];
 
   return (
-    <div className="max-w-7xl mx-auto px-10 sm:px-16 py-6">
+    <div className="max-w-7xl mx-auto px-10 sm:px-16 py-12">
       <Slider {...settings}>
         {images.map((src, idx) => (
           <div key={idx} className="px-2">
             <img
               src={src}
               alt={`carousel-slide-${idx}`}
-              className="w-full h-72 sm:h-80 md:h-96 object-cover rounded-lg"
+              className="w-full h-72 sm:h-80 md:h-98 object-cover rounded-lg"
             />
           </div>
         ))}
@@ -135,25 +135,11 @@ const HomeComponent = ({ hideTop = false }) => {
       {/* Hide Top Banner, Carousel, Scriptures when hideTop is true */}
       {!hideTop && (
         <>
-          {/* Banner */}
-          <div className="w-full bg-white relative z-0 mt-16">
-            <img
-              src="/prayer.png"
-              alt="Prayer Flag Banner"
-              className="w-full object-contain"
-              style={{ maxHeight: "165px", display: "block" }}
-            />
-          </div>
-
-          {/* Carousel */}
-          <div className="relative z-10">
-            <ImageCarousel />
-          </div>
-
-          {/* Scriptures */}
-          <div className="relative z-10">
-            <ScripturesSection />
-          </div>
+         
+         {/* Carousel */}
+<div className="w-full bg-white relative z-0 mt-24 min-h-[800px]">
+  <ImageCarousel />
+</div>
         </>
       )}
 
@@ -163,7 +149,7 @@ const HomeComponent = ({ hideTop = false }) => {
       </section>
 
       {/* Product Section */}
-      <section className={`${sectionClass} grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4`}>
+      <section className={`${sectionClass} grid grid-cols-2 mt-0 md:grid-cols-3 lg:grid-cols-4`}>
         <SingleProduct />
       </section>
     </Fragment>

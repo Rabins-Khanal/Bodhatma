@@ -7,7 +7,7 @@ const apiURL = process.env.REACT_APP_API_URL;
 
 const TableHeader = () => {
   return (
-    <thead className="bg-orange-100 text-orange-800 text-sm uppercase font-semibold">
+    <thead className="bg-blue-100 text-blue-800 text-sm uppercase font-semibold">
       <tr>
         <th className="px-4 py-3 border">Products</th>
         <th className="px-4 py-3 border">Status</th>
@@ -99,7 +99,7 @@ const OrdersComponent = () => {
     <Fragment>
       <div className="flex flex-col w-full my-4 md:my-0 md:w-9/12 md:px-8">
         <div className="border shadow-xl rounded-xl overflow-hidden">
-          <div className="py-4 px-6 text-xl font-semibold bg-orange-100 text-orange-800 border-b border-orange-500">
+          <div className="py-4 px-6 text-xl font-semibold bg-blue-100 text-blue-800 border-b border-blue-500">
             Order History
           </div>
           <div className="overflow-auto bg-white p-4">

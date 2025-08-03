@@ -16,36 +16,37 @@ const Navber = (props) => {
 
   return (
     <Fragment>
-      <nav className="fixed top-0 w-full z-20 shadow-lg lg:shadow-none bg-white">
+     <nav className="fixed top-0 left-0 right-0 z-10 bg-white-200 shadow-lg h-20 flex items-center px-4">
+
         <div className="m-4 md:mx-12 md:my-6 grid grid-cols-3 items-center">
           {/* LOGO */}
           <div
             onClick={() => history.push("/")}
             style={{ letterSpacing: "0.2rem" }}
-            className="flex items-center text-gray-800 font-bold tracking-widest uppercase text-2xl cursor-pointer col-span-1"
+            className="flex items-center text-black-800 font-bold tracking-widest uppercase text-2xl cursor-pointer col-span-1"
           >
             <img
-              src="../logo.png" // Replace with your actual logo path
-              alt="Bodhivana Logo"
+              src="../logo1.png" // Replace with your actual logo path
+              alt="corewear Logo"
               className="h-14 w-10 mr-3"
             />
-           Bodhatma
+           CoreWear
           </div>
 
           {/* NAV LINKS */}
-          <div className="hidden lg:flex justify-center col-span-1 text-gray-600 space-x-6">
-            {["/", "/scriptures", "/accessories", "/about"].map((path, i) => (
+          <div className="hidden lg:flex justify-center col-span-1 text-black-600 space-x-6">
+            {["/", "/accessories", "/scriptures", "/about"].map((path, i) => (
               <span
                 key={i}
-                className="hover:bg-gray-200 px-4 py-3 rounded-lg font-light tracking-widest hover:text-gray-800 cursor-pointer"
+                className="hover:bg-white-200 px-4 py-3 rounded-lg font-light tracking-widest hover:text-white-800 cursor-pointer"
                 onClick={() => history.push(path)}
               >
                 {path === "/"
                   ? "Home"
                   : path === "/scriptures"
-                  ? "Scriptures"
-                  : path === "/accessories"
                   ? "Accessories"
+                  : path === "/accessories"
+                  ? "Clothings"
                   : "About"}
               </span>
             ))}
@@ -56,13 +57,13 @@ const Navber = (props) => {
             {/* 🔍 Search */}
             <div
               onClick={() => toggle("searchDropdown", !data.searchDropdown)}
-              className={`hover:bg-gray-200 px-2 py-2 rounded-lg cursor-pointer ${
+              className={`hover:bg-black-200 px-2 py-2 rounded-lg cursor-pointer ${
                 data.searchDropdown ? "text-yellow-700" : ""
               }`}
               title="Search"
             >
               <svg
-                className="w-6 h-6 text-gray-600 hover:text-yellow-700"
+                className="w-6 h-6 text-black-600 hover:text-yellow-700"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -80,7 +81,7 @@ const Navber = (props) => {
             {/* ❤️ Wishlist */}
             <div
               onClick={() => history.push("/wish-list")}
-              className="hover:bg-gray-200 rounded-lg px-2 py-2 cursor-pointer"
+              className="hover:bg-black-200 rounded-lg px-2 py-2 cursor-pointer"
               title="Wishlist"
             >
               <svg
@@ -88,7 +89,7 @@ const Navber = (props) => {
                   location.pathname === "/wish-list"
                     ? "fill-current text-gray-800"
                     : ""
-                } w-6 h-6 text-gray-600`}
+                } w-6 h-6 text-black-200`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -114,7 +115,7 @@ const Navber = (props) => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
                   viewBox="0 0 24 24"
-                  className="cursor-pointer w-6 h-6 text-gray-600 hover:text-gray-800"
+                  className="cursor-pointer w-6 h-6 text-black-600 hover:text-black-800"
                 >
                   <path
                     fillRule="evenodd"
@@ -122,32 +123,32 @@ const Navber = (props) => {
                     clipRule="evenodd"
                   />
                 </svg>
-                <div className="userDropdown absolute right-0 mt-1 bg-gray-200 rounded">
+                <div className="userDropdown absolute right-0 mt-1 bg-blue-100 rounded">
                   <ul className="flex flex-col text-gray-700 w-48 shadow-lg">
                     {!isAdmin() ? (
                       <>
                         <li
                           onClick={() => history.push("/user/orders")}
-                          className="px-6 py-2 hover:bg-gray-400 cursor-pointer"
+                          className="px-6 py-2 hover:bg-black-400 cursor-pointer"
                         >
                           My Orders
                         </li>
                         <li
                           onClick={() => history.push("/user/profile")}
-                          className="px-6 py-2 hover:bg-gray-400 cursor-pointer"
+                          className="px-6 py-2 hover:bg-black-400 cursor-pointer"
                         >
                           My Account
                         </li>
 
                         <li
                           onClick={() => history.push("/user/setting")}
-                          className="px-6 py-2 hover:bg-gray-400 cursor-pointer"
+                          className="px-6 py-2 hover:bg-black-400 cursor-pointer"
                         >
                           Settings
                         </li>
                         <li
                           onClick={() => logout()}
-                          className="px-6 py-2 hover:bg-gray-400 cursor-pointer"
+                          className="px-6 py-2 hover:bg-black-400 cursor-pointer"
                         >
                           Logout
                         </li>
@@ -156,13 +157,13 @@ const Navber = (props) => {
                       <>
                         <li
                           onClick={() => history.push("/admin/dashboard")}
-                          className="px-6 py-2 hover:bg-gray-400 cursor-pointer"
+                          className="px-6 py-2 hover:bg-black-400 cursor-pointer"
                         >
                           Admin Panel
                         </li>
                         <li
                           onClick={() => logout()}
-                          className="px-6 py-2 hover:bg-gray-400 cursor-pointer"
+                          className="px-6 py-2 hover:bg-black-400 cursor-pointer"
                         >
                           Logout
                         </li>
@@ -174,11 +175,11 @@ const Navber = (props) => {
             ) : (
               <div
                 onClick={() => history.push("/login")}
-                className="hover:bg-gray-200 px-2 py-2 rounded-lg cursor-pointer"
+                className="hover:bg-black-200 px-2 py-2 rounded-lg cursor-pointer"
                 title="Login"
               >
                 <svg
-                  className="w-6 h-6 text-gray-600 hover:text-gray-800"
+                  className="w-6 h-6 text-black-600 hover:text-black-800"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -197,7 +198,7 @@ const Navber = (props) => {
             {/* 🛒 Cart (now goes to /cart) */}
             <div
               onClick={() => history.push("/cart")}
-              className="hover:bg-gray-200 px-2 py-2 rounded-lg relative cursor-pointer"
+              className="hover:bg-black-200 px-2 py-2 rounded-lg relative cursor-pointer"
               title="Cart"
             >
               {/* Realistic Cart Icon */}
@@ -206,7 +207,7 @@ const Navber = (props) => {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                className="w-6 h-6 text-gray-600 hover:text-gray-800"
+                className="w-6 h-6 text-black-600 hover:text-black-800"
               >
                 <path
                   strokeLinecap="round"

@@ -146,22 +146,22 @@ class Auth {
             });
           }
 
-          // If 2FA is not enabled 
-          const token = jwt.sign(
-            { _id: data._id, role: data.userRole },
-            JWT_SECRET
-          );
-          const encode = jwt.verify(token, JWT_SECRET);
-          return res.json({
-            token: token,
-            user: encode,
-          });
-//           returnres.cookie("token", token, {
-//   httpOnly: true,
-//   secure: process.env.NODE_ENV === "production",
-//   sameSite: "Lax"
-//   // No maxAge or expires
-// });
+          // // If 2FA is not enabled 
+          // const token = jwt.sign(
+          //   { _id: data._id, role: data.userRole },
+          //   JWT_SECRET
+          // );
+          // const encode = jwt.verify(token, JWT_SECRET);
+          // return res.json({
+          //   token: token,
+          //   user: encode,
+          // });
+          returnres.cookie("token", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "Lax"
+  // No maxAge or expires
+});
 
         } else {
           return res.json({

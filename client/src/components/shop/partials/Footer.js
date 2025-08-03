@@ -4,12 +4,12 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 const SimpleFooter = () => {
   return (
     <footer
-      style={{ backgroundColor: "#F38867" }}
+      style={{ backgroundColor: "#BFDBFE" }}
       className="text-black py-12 px-6"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-10 pointer-events-none">
         <div className="flex flex-col pl-4">
-          <h3 className="font-semibold text-lg mb-5">Become a member</h3>
+          <h3 className="font-semibold text-lg mb-5">Buy your first wear!</h3>
           <input
             type="email"
             placeholder="Enter your email"
@@ -24,20 +24,20 @@ const SimpleFooter = () => {
             +977 9842242427
           </span>
           <span className="mt-2 text-base cursor-pointer hover:underline">
-            support@example.com
+            support@gmail.com
           </span>
         </div>
 
         <div className="flex flex-col pl-4">
           <h3 className="font-semibold text-lg mb-5">Account</h3>
           <span className="text-base cursor-pointer hover:underline mb-2">
-            My Account
+            Address
           </span>
           <span className="text-base cursor-pointer hover:underline mb-2">
-            Login / Register
+            Dillibazar, Kathmandu
           </span>
           <span className="text-base cursor-pointer hover:underline">
-            Cart
+            Softwarica College
           </span>
         </div>
 

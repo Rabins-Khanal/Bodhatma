@@ -319,7 +319,7 @@ export const CheckoutComponent = (props) => {
                   <button
                     onClick={handleOrderSubmit}
                     disabled={state.loading}
-                    className="w-full md:w-40 text-center px-4 py-3 text-white font-semibold bg-orange-600 hover:bg-orange-700 disabled:bg-gray-400 rounded-md transition duration-300 cursor-pointer disabled:cursor-not-allowed"
+                    className="w-full md:w-40 text-center px-4 py-3 text-white font-semibold bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 rounded-md transition duration-300 cursor-pointer disabled:cursor-not-allowed"
                   >
                     {state.loading ? (
                       <div className="flex items-center justify-center">
@@ -330,7 +330,7 @@ export const CheckoutComponent = (props) => {
                         Processing...
                       </div>
                     ) : (
-                      `Order Now - Rs.${totalCost(data.cartProduct)}.00`
+                      `Order Now`
                     )}
                   </button>
                 </div>

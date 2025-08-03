@@ -6,6 +6,8 @@ import { useSnackbar } from 'notistack';
 import Navbar from "../partials/Navber";
 import { Footer } from "../partials";
 import SimpleCaptcha from "./SimpleCaptcha";
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+
 
 const Login = (props) => {
   const { data: layoutData, dispatch: layoutDispatch } = useContext(LayoutContext);
@@ -23,6 +25,7 @@ const Login = (props) => {
   const [forgotEmail, setForgotEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const alert = (msg) => <div className="text-xs text-red-500 mt-1">{msg}</div>;
 
@@ -34,7 +37,6 @@ const Login = (props) => {
   }, [emailSent]);
 
   const formSubmit = async () => {
-    // Check if CAPTCHA is verified
     if (!captchaVerified) {
       enqueueSnackbar('Please complete the security verification first', { variant: 'error' });
       return;
@@ -43,17 +45,12 @@ const Login = (props) => {
     setData({ ...data, loading: true });
 
     try {
-      console.log('🔍 Attempting login with:', { email: data.email, password: '***' });
-      
       let response = await loginReq({
         email: data.email,
         password: data.password,
       });
 
-      console.log('📡 Backend response:', response);
-
       if (response.error) {
-        console.log('❌ Login error:', response.error);
         setData({
           ...data,
           loading: false,
@@ -61,43 +58,31 @@ const Login = (props) => {
           password: "",
         });
       } else if (response.requiresOTP) {
-        console.log('✅ 2FA required, redirecting to OTP verification');
-        // User needs to verify OTP - redirect to separate page
         setData({ ...data, loading: false, error: false });
         enqueueSnackbar('Please check your email for OTP verification', { variant: 'info' });
-        // Store email in localStorage for OTP page
         localStorage.setItem('otpEmail', data.email);
-        // Redirect to OTP verification page
         history.push('/verify-otp');
       } else if (response.token) {
-        console.log('✅ Direct login successful (2FA not enabled)');
-        // Direct login without 2FA
         setData({ email: "", password: "", loading: false, error: false });
         localStorage.setItem("jwt", JSON.stringify(response));
         enqueueSnackbar('Login Completed Successfully..!', { variant: 'success' });
         window.location.href = "/";
       } else {
-        console.log('❓ Unexpected response format:', response);
         setData({ ...data, loading: false, error: 'Unexpected response from server' });
       }
     } catch (err) {
-      console.error('💥 Login exception:', err);
       setData({ ...data, loading: false });
-
       if (err.response && err.response.status === 429) {
-        enqueueSnackbar(err.response.data.error || "Too many login attempts. Please try again later.", {
+        enqueueSnackbar(err.response.data.error || "Too many login attempts. Please try again after 30 seconds", {
           variant: "error",
         });
       } else {
-        console.error(err);
-        enqueueSnackbar("Too many unsuccesful attempts. Please try again after 1 minute", {
+        enqueueSnackbar("Too many unsuccessful attempts. Please try again after 1 minute", {
           variant: "error",
         });
       }
     }
   };
-
-
 
   const handleForgotSubmit = (e) => {
     e.preventDefault();
@@ -108,33 +93,21 @@ const Login = (props) => {
     <Fragment>
       <Navbar />
 
-      <div className="flex justify-center mt-20">
-        <img
-          src={`${process.env.PUBLIC_URL}/prayer.png`} 
-          alt="Prayer Flags"
-          style={{
-            width: "82%",       
-            height: "auto",      
-            objectFit: "cover",  
-          }}
-        />
-      </div>
-
-      <div className="flex justify-center items-start gap-16 mt-8 px-6" style={{ marginTop: "30px", marginBottom:"100px" }}>
+      <div className="flex justify-center items-start gap-16 mt-12 px-6" style={{ marginTop: "150px", marginBottom: "80px" }}>
         <div>
           <img
-            src={`${process.env.PUBLIC_URL}/buddhag.png`}
-            alt="Buddha"
-            style={{ width: "620px", height:"420px", borderRadius: '6px', boxShadow: '0 2px 12px rgba(0,0,0,0.08)' }}
+            src={`${process.env.PUBLIC_URL}/gg.png`}
+            alt="Cloth"
+            style={{ width: "640px", height: "600px", borderRadius: '5px', boxShadow: '0 20px 12px rgba(0,0,0,0.08)' }}
           />
         </div>
 
         <div
-          style={{ minWidth: 500, minHeight: 400, marginTop: "-10px" }}
-          className="bg-white rounded-md py-8 relative"
+          style={{ minWidth: 500, minHeight: 400, marginTop: "-2px" }}
+          className="bg-white rounded-md py-8"
         >
-          <div className="font-bold text-3xl mb-2">Log in</div>
-          <div className="text-gray-700 mb-6">Enter your details below</div>
+          <div className="font-bold text-3xl mb-0">Log in</div>
+          <div className="text-gray-700 mb-4">Enter your details below</div>
 
           {layoutData.loginSignupError && (
             <div className="bg-red-200 py-2 px-4 mb-3 rounded text-sm text-red-700">
@@ -165,19 +138,33 @@ const Login = (props) => {
               {data.error && typeof data.error === 'string' && alert(data.error)}
             </div>
 
-            <div>
+            {/* Password field with toggle */}
+            <div className="relative">
               <input
                 onChange={(e) => {
                   setData({ ...data, password: e.target.value, error: false });
                   layoutDispatch({ type: "loginSignupError", payload: false });
                 }}
                 value={data.password}
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 id="password"
-                className="w-full border-b-2 border-gray-200 focus:border-black outline-none py-2 bg-transparent"
+                className="w-full border-b-2 border-gray-200 focus:border-black outline-none py-2 bg-transparent pr-10"
                 style={{ fontSize: 16 }}
               />
+              <button
+  type="button"
+  onClick={() => setShowPassword(!showPassword)}
+  className="absolute right-0 top-2 text-gray-500 hover:text-gray-700 focus:outline-none"
+  aria-label="Toggle password visibility"
+>
+  {showPassword ? (
+    <EyeSlashIcon className="h-5 w-5" />
+  ) : (
+    <EyeIcon className="h-5 w-5" />
+  )}
+</button>
+
               {data.error && typeof data.error === 'string' && alert(data.error)}
             </div>
 
@@ -185,7 +172,7 @@ const Login = (props) => {
               <button
                 type="button"
                 onClick={() => { setShowForgot(true); setEmailSent(false); setForgotEmail(""); }}
-                className="text-sm text-blue-600 hover:underline focus:outline-none"
+                className="text-sm text-yellow-600 hover:underline focus:outline-none"
               >
                 Forgot Password?
               </button>
@@ -201,8 +188,8 @@ const Login = (props) => {
 
             <button
               type="submit"
-              style={{ background: "#FA8256", fontWeight: 500, fontSize: 17 }}
-              className={`w-full rounded py-2 text-black mt-3 transition ${
+              style={{ background: "#2563EB", fontWeight: 500, fontSize: 17 }}
+              className={`w-full rounded py-2 text-white mt-3 transition ${
                 captchaVerified 
                   ? 'hover:opacity-90' 
                   : 'opacity-50 cursor-not-allowed'

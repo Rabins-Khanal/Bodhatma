@@ -1,28 +1,18 @@
 {
-  "name": "Bodhivana",
+  "name": "CoreWear",
   "version": "1.0.0",
-  "description": "Bodhivana - A comprehensive platform.",
+  "description": "CoreWear - A comprehensive platform.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hasan-py/MERN_Stack_Project_Hayroo_Ecommerce"
-  },
-  "author": "Hasan | https://hasan-py.github.io",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hasan-py/MERN_Stack_Project_Hayroo_Ecommerce/issues"
-  },
-  "homepage": "https://github.com/hasan-py/MERN_Stack_Project_Hayroo_Ecommerce#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "braintree": "^3.0.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-rate-limit": "^8.0.1",

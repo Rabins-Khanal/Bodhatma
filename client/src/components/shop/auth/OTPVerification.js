@@ -117,30 +117,20 @@ const OTPVerification = () => {
     <>
       <Navbar />
 
-      <div className="flex justify-center mt-20">
-        <img
-          src={`${process.env.PUBLIC_URL}/prayer.png`} 
-          alt="Prayer Flags"
-          style={{
-            width: "82%",       
-            height: "auto",      
-            objectFit: "cover",  
-          }}
-        />
-      </div>
+      
 
-      <div className="flex justify-center items-start gap-16 mt-8 px-6" style={{ marginTop: "30px", marginBottom:"100px" }}>
+      <div className="flex justify-center items-start gap-16 mt-8 px-6" style={{ marginTop: "120px", marginBottom:"100px" }}>
         <div>
           <img
-            src={`${process.env.PUBLIC_URL}/buddhag.png`}
-            alt="Buddha"
-            style={{ width: "620px", height:"420px", borderRadius: '6px', boxShadow: '0 2px 12px rgba(0,0,0,0.08)' }}
+            src={`${process.env.PUBLIC_URL}/gg.png`}
+            alt="cloth"
+            style={{ width: "650px", height:"600px", borderRadius: '6px', boxShadow: '0 2px 12px rgba(0,0,0,0.08)' }}
           />
         </div>
 
         <div
           style={{ minWidth: 500, minHeight: 400, marginTop: "-10px" }}
-          className="bg-white rounded-md py-8 relative"
+          className="bg-white rounded-md py-24 relative"
         >
           <div className="font-bold text-3xl mb-2">Verify OTP</div>
           <div className="text-gray-700 mb-6">
@@ -172,8 +162,8 @@ const OTPVerification = () => {
 
             <button
               type="submit"
-              style={{ background: "#FA8256", fontWeight: 500, fontSize: 17 }}
-              className="w-full rounded py-3 text-black hover:opacity-90 transition disabled:opacity-50"
+              style={{ background: "#2563EB", fontWeight: 500, fontSize: 17 }}
+              className="w-full rounded py-3 text-white hover:opacity-90 transition disabled:opacity-50"
               disabled={loading || otp.join('').length !== 6}
             >
               {loading ? 'Verifying...' : 'Verify OTP'}

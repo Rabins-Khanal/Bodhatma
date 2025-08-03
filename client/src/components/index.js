@@ -18,7 +18,7 @@ import { SettingUser, UserOrders, UserProfile } from "./shop/dashboardUser";
 
 import ActivityPage from "./admin/activity/ActivityPage";
 
-// Inside your router setup
+// Inside router setup
 
 import Login from "./shop/auth/Login";
 import Signup from "./shop/auth/Signup";

@@ -52,12 +52,12 @@ const UploadImageSection = () => {
   return (
     <Fragment>
       <div className="relative m-4 bg-white p-4 shadow-lg">
-        <h1 className="border-b-2 border-orange-500 mb-4 pb-2 text-2xl font-semibold">
+        <h1 className="border-b-2 border-blue-500 mb-4 pb-2 text-2xl font-semibold">
           Shop Slider Images
         </h1>
         <div className="relative flex flex-col space-y-2">
           <div
-            style={{ background: "#FA8256" }}
+            style={{ background: "#3B82F6" }}
             className="relative z-0 px-4 py-2 rounded text-white flex justify-center space-x-2 md:w-4/12 hover:opacity-90 transition"
           >
             <svg
@@ -92,7 +92,7 @@ const UploadImageSection = () => {
               payload: !data.uploadSliderBtn,
             })
           }
-          style={{ background: "#FA8256" }}
+          style={{ background: "#3B82F6" }}
           className="cursor-pointer absolute top-0 right-0 m-4 rounded-full p-1 hover:opacity-90 transition"
         >
           <svg

@@ -48,18 +48,10 @@ const CartPage = () => {
 
   return (
     <div>
-      {/* 🔼 Banner Image */}
-      <div className="w-full bg-white relative z-10 mt-24">
-        <img
-          src="/prayer.png"
-          alt="Prayer Flag Banner"
-          className="w-full object-contain"
-          style={{ maxHeight: "120px", display: "block" }}
-        />
-      </div>
+      
 
       {/* 🛒 Cart Section */}
-      <section className="w-full max-w-4xl mx-auto pt-12 pb-12 flex flex-col bg-white rounded shadow space-y-4">
+      <section className="w-full max-w-4xl mx-auto pt-12 pb-12 flex flex-col bg-white relative z-10 mt-24 rounded shadow space-y-4">
         <div className="border-b border-gray-200 flex justify-between items-center p-6">
           <div className="text-black text-2xl font-semibold">Cart</div>
           <button
@@ -125,11 +117,11 @@ const CartPage = () => {
           {data.cartTotalCost ? (
             isAuthenticate() ? (
               <button
-                style={{ backgroundColor: "#E17657" }}
+                style={{ backgroundColor: "#3B82F6" }}
                 className="w-full px-6 py-3 text-white rounded-lg text-lg font-semibold hover:opacity-90"
                 onClick={() => history.push("/checkout")}
               >
-                Checkout Rs.{data.cartTotalCost}.00
+                Checkout 
               </button>
             ) : (
               <button
@@ -140,12 +132,12 @@ const CartPage = () => {
                   dispatch({ type: "loginSignupModalToggle", payload: !data.loginSignupModal });
                 }}
               >
-                Checkout Rs.{data.cartTotalCost}.00
+                Checkout 
               </button>
             )
           ) : (
             <button
-              className="w-full px-6 py-3 bg-orange-600 text-black rounded-lg text-lg font-semibold cursor-not-allowed"
+              className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg text-lg font-semibold cursor-not-allowed"
               disabled
             >
               Checkout

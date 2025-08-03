@@ -55,7 +55,7 @@ const ProfileComponent = () => {
     <Fragment>
       <div className="flex flex-col w-full my-4 md:my-0 md:w-9/12 md:px-8">
         <div className="shadow-xl border rounded-xl overflow-hidden">
-          <div className="py-4 px-6 text-xl font-semibold bg-orange-100 border-b border-orange-600 text-orange-800">
+          <div className="py-4 px-6 text-xl font-semibold bg-blue-100 border-b border-blue-600 text-blue-800">
             Personal Information
           </div>
           <div className="py-6 px-6 md:px-10 flex flex-col space-y-6 bg-white">
@@ -104,7 +104,7 @@ const ProfileComponent = () => {
             <div className="flex justify-center">
               <button
                 onClick={handleSubmit}
-                className="w-fit px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white text-sm font-semibold rounded-md transition-all duration-200"
+                className="w-fit px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-md transition-all duration-200"
               >
                 Update Info
               </button>

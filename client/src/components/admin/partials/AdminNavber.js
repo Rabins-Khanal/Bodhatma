@@ -13,22 +13,22 @@ const AdminNavber = (props) => {
 
   return (
     <Fragment>
-      <nav className="sticky z-10 flex items-center shadow-md justify-between px-4 py-4 md:px-8 top-0 w-full bg-white">
+      <nav className="sticky z-10 flex items-center shadow-md justify-between px-4 py-4 md:px-8 top-0 w-full bg-blue">
         {/* Large Screen Show */}
         <div
           className="hidden lg:flex lg:items-center lg:space-x-4 mr-32 cursor-pointer"
           onClick={() => history.push("/admin/dashboard")}
         >
           <img
-            src="/logo.png"
-            alt="Bodhivana Logo"
+            src="/logo1.png"
+            alt=" Logo"
             className="w-10 h-10 object-contain"
           />
           <span
             style={{ letterSpacing: "0.70rem" }}
             className="font-bold uppercase text-gray-800 text-2xl px-2"
           >
-            Buddhaatma
+            CoreWear
           </span>
         </div>
 

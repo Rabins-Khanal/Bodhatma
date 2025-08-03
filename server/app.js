@@ -97,7 +97,6 @@ if (useHTTPS) {
 // const helmet = require("helmet");
 // const mongoSanitize = require("express-mongo-sanitize");
 // const xss = require("xss-clean");
-// const csurf = require("csurf");
 
 // // Routers
 // const authRouter = require("./routes/auth");
@@ -137,7 +136,7 @@ if (useHTTPS) {
 // app.use(xss()); // Prevent XSS
 // app.use(mongoSanitize()); // Prevent NoSQL injection
 
-// // Enable CORS with credentials
+
 // app.use(
 //   cors({
 //     origin: "http://localhost:3000",
@@ -145,20 +144,7 @@ if (useHTTPS) {
 //   })
 // );
 
-// // CSRF Protection Middleware 
-// const csrfProtection = csurf({
-//   cookie: {
-//     httpOnly: true,
-//     secure: process.env.NODE_ENV === "production",
-//     sameSite: "strict",
-//   },
-// });
-// app.use(csrfProtection);
 
-// // Route to get CSRF token 
-// app.get("/api/csrf-token", (req, res) => {
-//   res.json({ csrfToken: req.csrfToken() });
-// });
 
 // // Routes
 // app.use("/api", authRouter);
